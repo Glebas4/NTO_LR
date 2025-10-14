@@ -16,7 +16,7 @@ class cube:
         self.pose = Pose()
         self.pose.position = Point(self.x, self.y, self.z)
         self.q = Quaternion(x=0, y=0, z=0, w=1)
-        self.pose.orientation = Quaternion(*self.q)
+        self.pose.orientation = Quaternion(self.q)
 
         self.color = color
         self.path = "dronepoint/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
@@ -52,6 +52,12 @@ def main():
     dronepoint_yellow = cube(x_list[2], y_list[2], "yellow")
     dronepoint_red = cube(x_list[3], y_list[3], "red")
 
+    dronepoint_blue.spawn()
+    dronepoint_green.spawn()
+    dronepoint_yellow.spawn()
+    dronepoint_red.spawn()
+
 
 if __name__ == '__main__':
+    rospy.init_node("cubiki")
     main()
