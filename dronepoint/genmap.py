@@ -15,8 +15,8 @@ class cube:
 
         self.pose = Pose()
         self.pose.position = Point(self.x, self.y, self.z)
-        self.q = Quaternion(x=0, y=0, z=0, w=1)
-        self.pose.orientation = Quaternion(self.q)
+        #self.q = Quaternion(x=0, y=0, z=0, w=1)
+        #self.pose.orientation = Quaternion(self.q)
 
         self.color = color
         self.path = "dronepoint/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
@@ -25,11 +25,15 @@ class cube:
         with open(self.path, 'r') as f:
             sdf_file = f.read()
 
-        resp = spawn_service(model_name=self.color,
+        gen = spawn_service(model_name=self.color,
                              model_xml=sdf_file,
                              robot_namespace='',
                              initial_pose=self.pose,
                              reference_frame="aruco_map")
+        if gen:
+            print(self.color + "success spawned")
+        else:
+            print(gen.status_message)
 
 
 def main():
