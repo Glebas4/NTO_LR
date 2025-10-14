@@ -10,8 +10,7 @@ class cube:
         self.path = "dronepoint/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
 
     def file_write(self):
-        tree = ET.parse(self.path)
-        #root = tree.getroot()
+        tree = ET.Element('model', attrib={'name':'dronepoint_blue'})
         pose = ET.SubElement(tree, 'pose')
         pose.text = self.x + " " + self.y + " "+ "0 0 0 0"
         tree.write(self.path)
