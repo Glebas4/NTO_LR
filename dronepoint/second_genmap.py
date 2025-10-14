@@ -12,8 +12,9 @@ class cube:
     def file_write(self):
         tree = ET.parse(self.path)
         root = tree.getroot()
-        val = self.x + " " + self.y + " "+ "0 0 0 0"
-        ET.set('pose', val)
+        model = root.find('.//model')
+        pose = ET.SubElement(model, 'pose')
+        pose.val = val = self.x + " " + self.y + " "+ "0 0 0 0"
         tree.write(self.path)
 
 
