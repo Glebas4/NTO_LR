@@ -13,7 +13,7 @@ class cube:
         tree = ET.parse(self.path)
         root = tree.getroot()
         model = root.find('.//model')
-        pose = ET.SubElement(model, 'pose')
+        pose = model.find('pose')
         pose.val = val = self.x + " " + self.y + " "+ "0 0 0 0"
         tree.write(self.path)
 
