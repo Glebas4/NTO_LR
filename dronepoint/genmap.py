@@ -30,7 +30,7 @@ class cube:
                              robot_namespace='',
                              initial_pose=self.pose,
                              reference_frame="world")
-        print(gen.status_message)
+        print(gen.status_message, " ", self.color , " building" )
      
 
 
