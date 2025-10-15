@@ -16,8 +16,6 @@ class cube:
 
         self.pose = Pose()
         self.pose.position = Point(self.x, self.y, self.z)
-        #self.q = Quaternion(x=0, y=0, z=0, w=1)
-        #self.pose.orientation = Quaternion(self.q)
 
         self.color = color
         self.path = "catkin_ws/src/sitl_gazebo/models/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
