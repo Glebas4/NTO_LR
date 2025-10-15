@@ -1,7 +1,7 @@
 import rospy
 from gazebo_msgs.srv import SpawnModel
 from geometry_msgs.msg import Pose, Point, Quaternion
-from tf.transformations import quaternion_from_euler
+#from tf.transformations import quaternion_from_euler
 import random
 
 spawn_service = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
@@ -19,7 +19,7 @@ class cube:
         #self.pose.orientation = Quaternion(self.q)
 
         self.color = color
-        self.path = "dronepoint/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
+        self.path = "catkin_ws/src/sitl_gazebo/models/dronepoint/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
 
     def spawn(self):
         with open(self.path, 'r') as f:
@@ -31,6 +31,7 @@ class cube:
                              initial_pose=self.pose,
                              reference_frame="aruco_map")
         print(gen.status_message)
+     
 
 
 def main():
@@ -60,5 +61,5 @@ def main():
 
 
 if __name__ == '__main__':
-    rospy.init_node("cubiki")
+    rospy.init_node("kubiki")
     main()
