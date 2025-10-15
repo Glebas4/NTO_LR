@@ -40,11 +40,11 @@ class building:
 
 def main():
     if len(sys.argv)>1:
-        dronepoint_blue   = building(0, 0, "building", "1")
-        dronepoint_green  = building(0, 0, "building", "2")
-        dronepoint_yellow = building(0, 0, "building", "3")
-        dronepoint_red    = building(0, 0, "building", "4")
-        dronepoint_random = building(0, 0, "building", "5")
+        dronepoint_blue   = building(0, 0, "building", "1st")
+        dronepoint_green  = building(0, 0, "building", "2nd")
+        dronepoint_yellow = building(0, 0, "building", "3rd")
+        dronepoint_red    = building(0, 0, "building", "4th")
+        dronepoint_random = building(0, 0, "building", "5th")
 
         dronepoint_blue.delete()
         dronepoint_green.delete()
@@ -68,11 +68,11 @@ def main():
             y_list.append(y)
             free_y.remove(y)
     
-        dronepoint_blue   = building(x_list[0], y_list[0], random.choice(dronepoints), "1")
-        dronepoint_green  = building(x_list[1], y_list[1], random.choice(dronepoints), "2")
-        dronepoint_yellow = building(x_list[2], y_list[2], random.choice(dronepoints), "3")
-        dronepoint_red    = building(x_list[3], y_list[3], random.choice(dronepoints), "4")
-        dronepoint_random = building(x_list[4], y_list[4], random.choice(dronepoints), "5")
+        dronepoint_blue   = building(x_list[0], y_list[0], random.choice(dronepoints), "1st")
+        dronepoint_green  = building(x_list[1], y_list[1], random.choice(dronepoints), "2nd")
+        dronepoint_yellow = building(x_list[2], y_list[2], random.choice(dronepoints), "3rd")
+        dronepoint_red    = building(x_list[3], y_list[3], random.choice(dronepoints), "4th")
+        dronepoint_random = building(x_list[4], y_list[4], random.choice(dronepoints), "5th")
 
 
         dronepoint_blue.spawn()
