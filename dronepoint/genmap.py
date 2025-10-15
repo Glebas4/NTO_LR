@@ -8,7 +8,7 @@ spawn_service = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
 delete_service = rospy.ServiceProxy('/gazebo/delete_model', DeleteModel)
 dronepoints = ["blue", "green", "yellow", "red"]
 
-class cube:
+class building:
     def __init__(self, x, y, color):
         self.x = x
         self.y = y
@@ -41,10 +41,10 @@ class cube:
 
 def main():
     if len(sys.argv)>1:
-        dronepoint_blue = cube(0, 0, "blue")
-        dronepoint_green = cube(0, 0, "green")
-        dronepoint_yellow = cube(0, 0, "yellow")
-        dronepoint_red = cube(0, 0, "red")
+        dronepoint_blue = building(0, 0, "blue")
+        dronepoint_green = building(0, 0, "green")
+        dronepoint_yellow = building(0, 0, "yellow")
+        dronepoint_red = building(0, 0, "red")
 
         dronepoint_blue.delete()
         dronepoint_green.delete()
@@ -67,10 +67,10 @@ def main():
             y_list.append(y)
             free_y.remove(y)
     
-        dronepoint_blue = cube(x_list[0], y_list[0], "blue")
-        dronepoint_green = cube(x_list[1], y_list[1], "green")
-        dronepoint_yellow = cube(x_list[2], y_list[2], "yellow")
-        dronepoint_red = cube(x_list[3], y_list[3], "red")
+        dronepoint_blue = building(x_list[0], y_list[0], "blue")
+        dronepoint_green = building(x_list[1], y_list[1], "green")
+        dronepoint_yellow = building(x_list[2], y_list[2], "yellow")
+        dronepoint_red = cbuilding(x_list[3], y_list[3], "red")
 
         dronepoint_blue.spawn()
         dronepoint_green.spawn()
