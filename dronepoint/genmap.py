@@ -29,7 +29,7 @@ class cube:
                              model_xml=sdf_file,
                              robot_namespace='',
                              initial_pose=self.pose,
-                             reference_frame="aruco_map")
+                             reference_frame="world")
         print(gen.status_message)
      
 
