@@ -19,7 +19,7 @@ class cube:
         #self.pose.orientation = Quaternion(self.q)
 
         self.color = color
-        self.path = "catkin_ws/src/sitl_gazebo/models/dronepoint/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
+        self.path = "catkin_ws/src/sitl_gazebo/models/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
 
     def spawn(self):
         with open(self.path, 'r') as f:
