@@ -16,6 +16,8 @@ class cube:
 
         self.pose = Pose()
         self.pose.position = Point(self.x, self.y, self.z)
+        #self.q = Quaternion(x=0, y=0, z=0, w=1)
+        #self.pose.orientation = Quaternion(self.q)
 
         self.color = color
         self.path = "catkin_ws/src/sitl_gazebo/models/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
@@ -39,10 +41,10 @@ class cube:
 
 def main():
     if sys.argv[1] == "clear":
-        dronepoint_blue = cube(color="blue")
-        dronepoint_green = cube(color="green")
-        dronepoint_yellow = cube(color="yellow")
-        dronepoint_red = cube(color="red")
+        dronepoint_blue = cube(0, 0, "blue")
+        dronepoint_green = cube(0, 0, "green")
+        dronepoint_yellow = cube(0, 0, "yellow")
+        dronepoint_red = cube(0, 0, "red")
 
         dronepoint_blue.delete()
         dronepoint_green.delete()
