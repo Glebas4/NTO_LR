@@ -70,7 +70,7 @@ def main():
         dronepoint_blue = building(x_list[0], y_list[0], "blue")
         dronepoint_green = building(x_list[1], y_list[1], "green")
         dronepoint_yellow = building(x_list[2], y_list[2], "yellow")
-        dronepoint_red = cbuilding(x_list[3], y_list[3], "red")
+        dronepoint_red = building(x_list[3], y_list[3], "red")
 
         dronepoint_blue.spawn()
         dronepoint_green.spawn()
