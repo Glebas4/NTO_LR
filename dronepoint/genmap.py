@@ -9,7 +9,7 @@ delete_service = rospy.ServiceProxy('/gazebo/delete_model', DeleteModel)
 dronepoints = ["blue", "green", "yellow", "red"]
 
 class building:
-    def __init__(self, x, y, color):
+    def __init__(self, x, y, color, name):
         self.x = x
         self.y = y
         self.z = 0
@@ -17,6 +17,7 @@ class building:
         self.pose = Pose()
         self.pose.position = Point(self.x, self.y, self.z)
 
+        self.name = name
         self.color = color
         self.path = "catkin_ws/src/sitl_gazebo/models/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
 
@@ -24,28 +25,26 @@ class building:
         with open(self.path, 'r') as f:
             sdf_file = f.read()
 
-        gen = spawn_service(model_name=self.color,
+        gen = spawn_service(model_name=self.name,
                              model_xml=sdf_file,
                              robot_namespace='',
                              initial_pose=self.pose,
                              reference_frame="world")
-        print(gen.status_message, self.color , "building")
+        print(gen.status_message, self.name, self.color, "building")
 
     def delete(self):
-        resp = delete_service(self.color)
-        print(resp.status_message, self.color , "building")
+        resp = delete_service(self.name)
+        print(resp.status_message, self.name, self.color, "building")
      
 
 
 def main():
-    rand_color = random.choice(dronepoints)
     if len(sys.argv)>1:
-        dronepoint_blue = building(0, 0, "blue")
-        dronepoint_green = building(0, 0, "green")
-        dronepoint_yellow = building(0, 0, "yellow")
-        dronepoint_red = building(0, 0, "red")
-        dronepoint_random = building(0, 0, rand_color)
-        dronepoint_random.color = "random"
+        dronepoint_blue   = building(0, 0, random.choice(dronepoints), "1st building")
+        dronepoint_green  = building(0, 0, random.choice(dronepoints), "2nd building")
+        dronepoint_yellow = building(0, 0, random.choice(dronepoints), "3rd building")
+        dronepoint_red    = building(0, 0, random.choice(dronepoints), "4th building")
+        dronepoint_random = building(0, 0, random.choice(dronepoints), "5th building")
 
         dronepoint_blue.delete()
         dronepoint_green.delete()
@@ -69,12 +68,11 @@ def main():
             y_list.append(y)
             free_y.remove(y)
     
-        dronepoint_blue = building(x_list[0], y_list[0], "blue")
-        dronepoint_green = building(x_list[1], y_list[1], "green")
-        dronepoint_yellow = building(x_list[2], y_list[2], "yellow")
-        dronepoint_red = building(x_list[3], y_list[3], "red")
-        dronepoint_random = building(x_list[4], y_list[5], rand_color)
-        dronepoint_random.color = "random"
+        dronepoint_blue   = building(x_list[0], y_list[0], random.choice(dronepoints), "1st building")
+        dronepoint_green  = building(x_list[1], y_list[1], random.choice(dronepoints), "2nd building")
+        dronepoint_yellow = building(x_list[2], y_list[2], random.choice(dronepoints), "3rd building")
+        dronepoint_red    = building(x_list[3], y_list[3], random.choice(dronepoints), "4h building")
+        dronepoint_random = building(x_list[4], y_list[4], random.choice(dronepoints), "5th building")
 
 
         dronepoint_blue.spawn()
