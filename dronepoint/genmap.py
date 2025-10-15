@@ -16,6 +16,8 @@ class cube:
 
         self.pose = Pose()
         self.pose.position = Point(self.x, self.y, self.z)
+        #self.q = Quaternion(x=0, y=0, z=0, w=1)
+        #self.pose.orientation = Quaternion(self.q)
 
         self.color = color
         self.path = "catkin_ws/src/sitl_gazebo/models/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
@@ -29,16 +31,16 @@ class cube:
                              robot_namespace='',
                              initial_pose=self.pose,
                              reference_frame="world")
-        print(gen.status_message, " ", self.color , " building")
+        print(gen.status_message, self.color , "building")
 
     def delete(self):
         resp = delete_service(self.color)
-        print(resp.status_message, " ", self.color , " building")
+        print(resp.status_message, self.color , "building")
      
 
 
 def main():
-    if sys.argv[1]:
+    if len(sys.argv)>1:
         dronepoint_blue = cube(0, 0, "blue")
         dronepoint_green = cube(0, 0, "green")
         dronepoint_yellow = cube(0, 0, "yellow")
@@ -50,7 +52,7 @@ def main():
         dronepoint_red.delete()
 
 
-    if not sys.argv:
+    else:
         x_list = []
         y_list = []
         free_x = [0,1,2,3,4,5,6,7,8,9]
