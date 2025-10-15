@@ -34,17 +34,17 @@ class building:
 
     def delete(self):
         resp = delete_service(self.name)
-        print(resp.status_message, self.name, self.color, "building")
+        print(resp.status_message, self.name, self.color)
      
 
 
 def main():
     if len(sys.argv)>1:
-        dronepoint_blue   = building(0, 0, random.choice(dronepoints), "1")
-        dronepoint_green  = building(0, 0, random.choice(dronepoints), "2")
-        dronepoint_yellow = building(0, 0, random.choice(dronepoints), "3")
-        dronepoint_red    = building(0, 0, random.choice(dronepoints), "4")
-        dronepoint_random = building(0, 0, random.choice(dronepoints), "5")
+        dronepoint_blue   = building(0, 0, "building", "1")
+        dronepoint_green  = building(0, 0, "building", "2")
+        dronepoint_yellow = building(0, 0, "building", "3")
+        dronepoint_red    = building(0, 0, "building", "4")
+        dronepoint_random = building(0, 0, "building", "5")
 
         dronepoint_blue.delete()
         dronepoint_green.delete()
