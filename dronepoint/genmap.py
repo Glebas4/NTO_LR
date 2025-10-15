@@ -30,10 +30,7 @@ class cube:
                              robot_namespace='',
                              initial_pose=self.pose,
                              reference_frame="aruco_map")
-        if gen:
-            print(self.color + "success spawned")
-        else:
-            print(gen.status_message)
+        print(gen.status_message)
 
 
 def main():
