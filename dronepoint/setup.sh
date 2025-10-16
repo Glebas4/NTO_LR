@@ -14,7 +14,7 @@ cd ..
 mv genmap.py /home/clover
 
 if [ $? -eq 0 ]; then
-    echo "genmap.py is ready"
+    echo "genmap.py successfully moved to /home/clover"
 else
     echo "ERROR: $?"
 fi
