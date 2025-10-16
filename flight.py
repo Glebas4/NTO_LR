@@ -7,6 +7,7 @@ from std_msgs.msg import String
 import cv2 as cv
 import math
 
+rospy.init_node('flight')
 
 bridge = CvBridge()
 get_telemetry = rospy.ServiceProxy('get_telemetry', srv.GetTelemetry)
@@ -23,7 +24,7 @@ buildings = []
 
 
 def navigate_wait(x=0, y=0, z=0, yaw=float('nan'), speed=0.5, frame_id='aruco_map', auto_arm=False, tolerance=0.2):
-    navigate(x=x, y=y, z=z, yaw=yaw, speed=speed, frame_id='aruco_map', auto_arm=auto_arm)
+    navigate(x=x, y=y, z=z, yaw=yaw, speed=speed, frame_id=frame_id, auto_arm=auto_arm)
 
     while not rospy.is_shutdown():
         telem = get_telemetry(frame_id='navigate_target')
@@ -44,22 +45,23 @@ def scan():
     return False
 
 
-def flight(x, y):
-    navigate_wait(x=x, y=y, z=2)
-    result = scan()
-    if result:
-        buildings.append((result, str(x), str(y)))
-    pub.publish(data=buildings)
-
 def main():
     navigate_wait(x=0, y=0, z=2, frame_id="body", auto_arm=True)
     for y in range(10):
         if not y % 2:
             for x in range(10):
-                flight(x, y)
+                navigate_wait(x=x, y=y, z=2)
+                result = scan()
+                if result:
+                    buildings.append((result, str(x), str(y)))
+                pub.publish(data=buildings)
         else:
             for x in range(10, 0, -1):
-                flight(x, y)
+                navigate_wait(x=x, y=y, z=2)
+                result = scan()
+                if result:
+                    buildings.append((result, str(x), str(y)))
+                pub.publish(data=buildings)
         
 
     navigate_wait(x=0, y=0, z=2, frame_id="aruco_map")
@@ -68,5 +70,4 @@ def main():
 
 
 if __name__ == '__main__':
-    rospy.init_node('flight')
     main()
