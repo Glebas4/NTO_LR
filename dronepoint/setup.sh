@@ -2,7 +2,7 @@
 
 echo "Setup started"
 cd dronepoints
-mv dronepoint_red dronepoint_green dronepoint_blue dronepoint_yellow home/clover/catkin_ws/src/sitl_gazebo/models
+mv dronepoint_red dronepoint_green dronepoint_blue dronepoint_yellow /home/clover/catkin_ws/src/sitl_gazebo/models
 
 if [ $? -eq 0 ]; then
     echo "Files have been successfully moved to home/clover/catkin_ws/src/sitl_gazebo/models"
@@ -10,6 +10,7 @@ else
     echo "ERROR: $?"
 fi
 
+cd ..
 mv genmap.py /home/clover
 
 if [ $? -eq 0 ]; then
