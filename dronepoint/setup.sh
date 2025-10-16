@@ -2,10 +2,10 @@
 
 echo "Setup started"
 cd dronepoints
-mv dronepoint_red dronepoint_green dronepoint_blue dronepoint_yellow /catkin_ws/src/sitl_gazebo/models/
+mv dronepoint_red dronepoint_green dronepoint_blue dronepoint_yellow home/clover/catkin_ws/src/sitl_gazebo/models
 
 if [ $? -eq 0 ]; then
-    echo "Files have been successfully moved to /catkin_ws/src/sitl_gazebo/models/"
+    echo "Files have been successfully moved to home/clover/catkin_ws/src/sitl_gazebo/models"
 else
     echo "ERROR: $?"
 fi
