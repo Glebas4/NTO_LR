@@ -14,10 +14,10 @@ navigate = rospy.ServiceProxy('navigate', srv.Navigate)
 land = rospy.ServiceProxy('land', Trigger)
 pub = rospy.Publisher('buildings', String, queue_size=1)
 colors = {
-    "red"   : (()()),
-    "green" : (()()),
-    "blue"  : (()()),
-    "yellow": (()()) 
+    "red"   : ((),()),
+    "green" : ((),()),
+    "blue"  : ((),()),
+    "yellow": ((),()) 
 }
 buildings = []
 
