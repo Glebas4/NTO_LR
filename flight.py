@@ -37,7 +37,7 @@ def scan():
     hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
     for col, val in colors.items():
         bin = cv.inRange(hsv, val[0], val[1])
-        count = cv.CountNonZero(bin)
+        count = cv.countNonZero(bin)
         if count>30:
             return col
         
