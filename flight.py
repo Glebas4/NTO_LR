@@ -14,10 +14,10 @@ navigate = rospy.ServiceProxy('navigate', srv.Navigate)
 land = rospy.ServiceProxy('land', Trigger)
 pub = rospy.Publisher('buildings', String, queue_size=1)
 colors = {
-    "red"   : ((),()),
-    "green" : ((),()),
-    "blue"  : ((),()),
-    "yellow": ((),()) 
+    "red"   : ((0, 200, 0),(10, 255, 10)),
+    "green" : ((100, 100, 100),(150, 150, 150)),
+    "blue"  : ((50, 50, 50),(80, 80, 80)),
+    "yellow": ((30, 30, 30),(70, 70, 70)) 
 }
 buildings = []
 
@@ -44,7 +44,7 @@ def scan():
     return False
 
 def main():
-    navigate_wait(x=0, y=0, z=2, frame_id="body")
+    navigate_wait(x=0, y=0, z=2, frame_id="body", auto_arm=True)
     for y in range(10):
         for x in range(10):
             navigate_wait(x=x, y=y, z=2)
