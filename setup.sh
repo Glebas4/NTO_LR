@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Setup started"
-cd NTO_LR/dronepoint/dronepoints
+cd dronepoint/dronepoints
 mv dronepoint_red dronepoint_green dronepoint_blue dronepoint_yellow /home/clover/catkin_ws/src/sitl_gazebo/models
 
 if [ $? -eq 0 ]; then
