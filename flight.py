@@ -6,6 +6,7 @@ from sensor_msgs.msg import Image
 #from std_msgs.msg import StringArray
 import cv2 as cv
 import math
+import numpy as np
 
 
 bridge = CvBridge()
@@ -13,6 +14,9 @@ get_telemetry = rospy.ServiceProxy('get_telemetry', srv.GetTelemetry)
 navigate = rospy.ServiceProxy('navigate', srv.Navigate)
 land = rospy.ServiceProxy('land', Trigger)
 #pub = rospy.Publisher('buildings', StringArray, queue_size=1)
+
+low_red = ((0, 240, 240), (15, 255, 255))
+up_red = ((350, 240, 240),(360, 255, 255))
 
 colors = {
     "red"   : cv.bitwise_or(((350,250,250),(360, 255, 255)), ((0,250,250),(15, 255, 255))),
