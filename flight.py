@@ -14,7 +14,7 @@ navigate = rospy.ServiceProxy('navigate', srv.Navigate)
 land = rospy.ServiceProxy('land', Trigger)
 #pub = rospy.Publisher('buildings', StringArray, queue_size=1)
 colors = {
-    "red"   : ((355,255,255),(13, 255, 255)),
+    "red"   : ((355,250,250),(13, 255, 255)),
     "green" : ((50, 240, 240),(90, 255, 255)),
     "blue"  : ((160, 240, 240),(170, 255, 255)),
     "yellow": ((40, 255, 255),(45, 255, 255)) 
@@ -50,8 +50,8 @@ def flight(x, y):
     result = scan()
     if result:
         buildings.append((result, str(x), str(y)))
-    #pub.publish(data=buildings)
-    print(*buildings)
+        #pub.publish(data=buildings)
+        print(*buildings)
 
 
 def main():
