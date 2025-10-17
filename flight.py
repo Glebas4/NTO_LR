@@ -14,10 +14,10 @@ navigate = rospy.ServiceProxy('navigate', srv.Navigate)
 land = rospy.ServiceProxy('land', Trigger)
 pub = rospy.Publisher('buildings', String, queue_size=1)
 colors = {
-    "red"   : ((0, 200, 0),(10, 255, 10)),
-    "green" : ((100, 100, 100),(150, 150, 150)),
-    "blue"  : ((50, 50, 50),(80, 80, 80)),
-    "yellow": ((30, 30, 30),(70, 70, 70)) 
+    "red"   : ((355,255,255),(13, 255, 255)),
+    "green" : ((50, 240, 240),(90, 255, 255)),
+    "blue"  : ((160, 240, 240),(170, 255, 255)),
+    "yellow": ((40, 255, 255),(45, 255, 255)) 
 }
 buildings = []
 
@@ -50,15 +50,17 @@ def flight(x, y):
     if result:
         buildings.append((result, str(x), str(y)))
     pub.publish(data=buildings)
+    print(buildings)
+
 
 def main():
     navigate_wait(x=0, y=0, z=2, frame_id="body", auto_arm=True)
-    for y in range(10):
+    for y in range(9):
         if not y % 2:
-            for x in range(10):
+            for x in range(9):
                 flight(x, y)
         else:
-            for x in range(10, 0, -1):
+            for x in range(9, -1, -1):
                 flight(x, y)
         
 
