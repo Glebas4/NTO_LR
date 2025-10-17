@@ -15,7 +15,7 @@ land = rospy.ServiceProxy('land', Trigger)
 #pub = rospy.Publisher('buildings', StringArray, queue_size=1)
 
 colors = {
-    "red"   : ((355,250,250),(13, 255, 255)),
+    "red"   : cv.bitwise_or(((350,250,250),(360, 255, 255)), ((0,250,250),(15, 255, 255))),
     "green" : ((50, 240, 240),(90, 255, 255)),
     "blue"  : ((160, 240, 240),(170, 255, 255)),
     "yellow": ((30, 255, 255),(45, 255, 255)) 
