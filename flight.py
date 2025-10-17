@@ -3,7 +3,7 @@ from clover import srv
 from std_srvs.srv import Trigger
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
-from std_msgs.msg import String
+#from std_msgs.msg import StringArray
 import cv2 as cv
 import math
 
@@ -12,7 +12,7 @@ bridge = CvBridge()
 get_telemetry = rospy.ServiceProxy('get_telemetry', srv.GetTelemetry)
 navigate = rospy.ServiceProxy('navigate', srv.Navigate)
 land = rospy.ServiceProxy('land', Trigger)
-pub = rospy.Publisher('buildings', String, queue_size=1)
+#pub = rospy.Publisher('buildings', StringArray, queue_size=1)
 colors = {
     "red"   : ((355,255,255),(13, 255, 255)),
     "green" : ((50, 240, 240),(90, 255, 255)),
@@ -33,7 +33,7 @@ def navigate_wait(x=0, y=0, z=0, yaw=float('nan'), speed=0.5, frame_id='aruco_ma
 
 
 def scan():
-    img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8')
+    img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8') [140:220, 100:140]
     hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
     for col, val in colors.items():
         bin = cv.inRange(hsv, val[0], val[1])
@@ -46,11 +46,12 @@ def scan():
 
 def flight(x, y):
     navigate_wait(x=x, y=y, z=2)
+    rospy.sleep(2)
     result = scan()
     if result:
         buildings.append((result, str(x), str(y)))
-    pub.publish(data=buildings)
-    print(buildings)
+    #pub.publish(data=buildings)
+    print(*buildings)
 
 
 def main():
