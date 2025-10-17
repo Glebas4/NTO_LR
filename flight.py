@@ -18,7 +18,7 @@ colors = {
     "red"   : ((355,250,250),(13, 255, 255)),
     "green" : ((50, 240, 240),(90, 255, 255)),
     "blue"  : ((160, 240, 240),(170, 255, 255)),
-    "yellow": ((40, 255, 255),(45, 255, 255)) 
+    "yellow": ((30, 255, 255),(45, 255, 255)) 
 }
 buildings = []
 
@@ -34,7 +34,7 @@ def navigate_wait(x=0, y=0, z=0, yaw=float('nan'), speed=0.5, frame_id='aruco_ma
 
 
 def scan():
-    img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8') [140:220, 100:140]
+    img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8') [100:140,140:180]
     hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
     for col, val in colors.items():
         bin = cv.inRange(hsv, val[0], val[1])
