@@ -13,6 +13,7 @@ get_telemetry = rospy.ServiceProxy('get_telemetry', srv.GetTelemetry)
 navigate = rospy.ServiceProxy('navigate', srv.Navigate)
 land = rospy.ServiceProxy('land', Trigger)
 #pub = rospy.Publisher('buildings', StringArray, queue_size=1)
+
 colors = {
     "red"   : ((355,250,250),(13, 255, 255)),
     "green" : ((50, 240, 240),(90, 255, 255)),
@@ -38,7 +39,7 @@ def scan():
     for col, val in colors.items():
         bin = cv.inRange(hsv, val[0], val[1])
         count = cv.countNonZero(bin)
-        if count > 30:
+        if count > 10:
             return col
         
     return False
