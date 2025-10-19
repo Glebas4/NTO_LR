@@ -44,13 +44,11 @@ def gen_points():
     while len(points) < 5:
         x = round(random.uniform(0, 9), 1)
         y = round(random.uniform(0, 9), 1)
-        if all(math.sqrt((point[0] - x)**2 + (point[1] - y)**2) >=1 for point in points):
+        if all(math.sqrt((point[0] - x)**2 + (point[1] - y)**2) >=1 for point in points): #Если гипотенуза соединяющая точки >=1 то координата довабляется
             points.append((x, y))
 
     return points
-
         
-
 
 def main():
     if len(sys.argv)>1:
