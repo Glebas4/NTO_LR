@@ -36,7 +36,7 @@ def navigate_wait(x=0, y=0, z=0, yaw=float('nan'), speed=1, frame_id='aruco_map'
 #   
 
 def scan():
-    img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8')[178:182,118:122]
+    img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8')[170:190,110:130]
     for col, val in colors.items():
         bin = cv.inRange(img, val[0], val[1])
         count = cv.countNonZero(bin)
