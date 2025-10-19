@@ -36,7 +36,7 @@ def navigate_wait(x=0, y=0, z=0, yaw=float('nan'), speed=1, frame_id='aruco_map'
 #   
 
 def scan():
-    img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8')[175:185,110:130]
+    img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8')[178:182,118:122]
     for col, val in colors.items():
         bin = cv.inRange(img, val[0], val[1])
         count = cv.countNonZero(bin)
@@ -47,7 +47,7 @@ def scan():
 
 
 def flight(x, y):
-    navigate_wait(x=x, y=y, z=2)
+    navigate_wait(x=x, y=y, z=2.5)
     result = scan()
     if result:
         pos = get_telemetry(frame_id='aruco_map')
@@ -56,7 +56,7 @@ def flight(x, y):
         print(buildings)
 
 def main():
-    navigate_wait(x=0, y=0, z=2, frame_id="body", auto_arm=True)
+    navigate_wait(x=0, y=0, z=2.5, frame_id="body", auto_arm=True)
     y = 0
     while y != 9:
         if isinstance(y, int):
