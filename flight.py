@@ -68,7 +68,7 @@ def main():
             y += 0.5
         else:
             x = 9.0
-            while x != 9.0:
+            while x != 0.0:
                 flight(x, y)
                 rospy.sleep(1)
                 x -= 0.5
