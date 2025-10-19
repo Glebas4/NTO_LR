@@ -48,7 +48,7 @@ def gen_points():
         if all(math.sqrt((cord[0] - cords[0])**2 + (cord[1] - cords[1]**2)) >=1 for cord in points):
             points.append(cords)
 
-        return points
+    return points
 
         
 
@@ -72,10 +72,10 @@ def main():
         cords = gen_points()
     
         dronepoint_blue   = building(points[0][0], points[0][1], random.choice(dronepoints), "1st")
-        dronepoint_green  = building(points[1][0], points[0][1], random.choice(dronepoints), "2nd")
-        dronepoint_yellow = building(points[2][0], points[0][1], random.choice(dronepoints), "3rd")
-        dronepoint_red    = building(points[3][0], points[0][1], random.choice(dronepoints), "4th")
-        dronepoint_random = building(points[4][0], points[0][1], random.choice(dronepoints), "5th")
+        dronepoint_green  = building(points[1][0], points[1][1], random.choice(dronepoints), "2nd")
+        dronepoint_yellow = building(points[2][0], points[2][1], random.choice(dronepoints), "3rd")
+        dronepoint_red    = building(points[3][0], points[3][1], random.choice(dronepoints), "4th")
+        dronepoint_random = building(points[4][0], points[4][1], random.choice(dronepoints), "5th")
 
 
         dronepoint_blue.spawn()
