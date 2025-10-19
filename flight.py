@@ -56,19 +56,22 @@ def flight(x, y):
 
 def main():
     navigate_wait(x=0, y=0, z=2, frame_id="body", auto_arm=True)
-    for y in range(0, 10, 0.5):
+    while y != 9:
+        y = 0
         if not y % 2:
             x = 0.0
             while x != 10.0:
                 flight(x, y)
                 rospy.sleep(1)
                 x += 0.5
+            y += 0.5
         else:
             x = 10.0
             while x != 10.0:
                 flight(x, y)
                 rospy.sleep(1)
                 x -= 0.5
+            y += 0.5
         
 
     navigate_wait(x=0, y=0, z=2, frame_id="aruco_map")
