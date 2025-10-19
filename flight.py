@@ -61,14 +61,14 @@ def main():
     while y != 9:
         if not round(y) % 2:
             x = 0.0
-            while x != 10.0:
+            while x != 9.0:
                 flight(x, y)
                 rospy.sleep(1)
                 x += 0.5
             y += 0.5
         else:
-            x = 10.0
-            while x != 10.0:
+            x = 9.0
+            while x != 9.0:
                 flight(x, y)
                 rospy.sleep(1)
                 x -= 0.5
