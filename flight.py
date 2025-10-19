@@ -51,7 +51,7 @@ def flight(x, y):
     result = scan()
     if result:
         pos = get_telemetry(frame_id='aruco_map')
-        buildings.append((result, str(pos.x), str(pos.y)))
+        buildings.append((result, pos.x, pos.y))
         #pub.publish(data=buildings)
         print(buildings)
 
