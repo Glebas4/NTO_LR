@@ -3,6 +3,7 @@ from gazebo_msgs.srv import SpawnModel, DeleteModel
 from geometry_msgs.msg import Pose, Point
 import random
 import sys
+import math
 
 spawn_service = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
 delete_service = rospy.ServiceProxy('/gazebo/delete_model', DeleteModel)
@@ -19,7 +20,7 @@ class building:
 
         self.name = name
         self.color = color
-        self.path = "/home/clover/catkin_ws/src/sitl_gazebo/models/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
+        self.path = "catkin_ws/src/sitl_gazebo/models/dronepoint_" + color + "/dronepoint_" + color + ".sdf"
 
     def spawn(self):
         with open(self.path, 'r') as f:
@@ -35,7 +36,19 @@ class building:
     def delete(self):
         resp = delete_service(self.name)
         print(resp.status_message, self.name, self.color)
-     
+
+
+def gen_points():
+    global points
+    points = []
+    while len(points) < 5:
+        x = round(random.uniform(0, 9), 1)
+        y = round(random.uniform(0, 9), 1)
+        cords = (x, y)
+        if all(math.sqrt((cord[0] - cords[0])**2 + cord[1] - cords[1]**2) >=1 for cord in points):
+            points.append(cords)
+
+        
 
 
 def main():
@@ -54,25 +67,13 @@ def main():
 
 
     else:
-        x_list = []
-        y_list = []
-        free_x = [0,1,2,3,4,5,6,7,8,9]
-        free_y = [0,1,2,3,4,5,6,7,8,9]
-
-        for x in range(5):
-            x = random.choice(free_x)
-            x_list.append(x)
-            free_x.remove(x)
-        for y in range(5):
-            y = random.choice(free_y)
-            y_list.append(y)
-            free_y.remove(y)
+        cords = gen_points()
     
-        dronepoint_blue   = building(x_list[0], y_list[0], random.choice(dronepoints), "1st")
-        dronepoint_green  = building(x_list[1], y_list[1], random.choice(dronepoints), "2nd")
-        dronepoint_yellow = building(x_list[2], y_list[2], random.choice(dronepoints), "3rd")
-        dronepoint_red    = building(x_list[3], y_list[3], random.choice(dronepoints), "4th")
-        dronepoint_random = building(x_list[4], y_list[4], random.choice(dronepoints), "5th")
+        dronepoint_blue   = building(points[0][0], points[0][1], random.choice(dronepoints), "1st")
+        dronepoint_green  = building(points[1][0], points[0][1], random.choice(dronepoints), "2nd")
+        dronepoint_yellow = building(points[2][0], points[0][1], random.choice(dronepoints), "3rd")
+        dronepoint_red    = building(points[3][0], points[0][1], random.choice(dronepoints), "4th")
+        dronepoint_random = building(points[4][0], points[0][1], random.choice(dronepoints), "5th")
 
 
         dronepoint_blue.spawn()
