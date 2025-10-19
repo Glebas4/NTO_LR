@@ -36,7 +36,7 @@ def navigate_wait(x=0, y=0, z=0, yaw=float('nan'), speed=1, frame_id='aruco_map'
 #   
 
 def scan():
-    img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8')[100:140,140:180]
+    img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8')[175:185,110:130]
     for col, val in colors.items():
         bin = cv.inRange(img, val[0], val[1])
         count = cv.countNonZero(bin)
@@ -59,7 +59,7 @@ def main():
     navigate_wait(x=0, y=0, z=2, frame_id="body", auto_arm=True)
     y = 0
     while y != 9:
-        if not round(y) % 2:
+        if isinstance(y, int):
             x = 0.0
             while x != 9.0:
                 flight(x, y)
