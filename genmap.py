@@ -44,9 +44,8 @@ def gen_points():
     while len(points) < 5:
         x = round(random.uniform(0, 9), 1)
         y = round(random.uniform(0, 9), 1)
-        cords = (x, y)
-        if all(math.sqrt((cord[0] - cords[0])**2 + (cord[1] - cords[1]**2)) >=1 for cord in points):
-            points.append(cords)
+        if all(math.sqrt((point[0] - x)**2 + (point[1] - y)**2) >=1 for point in points):
+            points.append((x, y))
 
     return points
 
