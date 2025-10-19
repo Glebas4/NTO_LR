@@ -48,6 +48,8 @@ def gen_points():
         if all(math.sqrt((cord[0] - cords[0])**2 + (cord[1] - cords[1]**2)) >=1 for cord in points):
             points.append(cords)
 
+        return points
+
         
 
 
