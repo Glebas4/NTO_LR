@@ -32,6 +32,9 @@ def navigate_wait(x=0, y=0, z=0, yaw=float('nan'), speed=0.5, frame_id='aruco_ma
         rospy.sleep(0.2)
 
 
+#def clear_map():
+#   
+
 def scan():
     img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8')
     for col, val in colors.items():
@@ -53,15 +56,19 @@ def flight(x, y):
 
 def main():
     navigate_wait(x=0, y=0, z=2, frame_id="body", auto_arm=True)
-    for y in range(10):
+    for y in range(0, 10, 0.5):
         if not y % 2:
-            for x in range(10, 0.5):
+            x = 0.0
+            while x != 10.0:
                 flight(x, y)
                 rospy.sleep(1)
+                x += 0.5
         else:
-            for x in range(10, 0, -0.5):
+            x = 10.0
+            while x != 10.0:
                 flight(x, y)
                 rospy.sleep(1)
+                x -= 0.5
         
 
     navigate_wait(x=0, y=0, z=2, frame_id="aruco_map")
