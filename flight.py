@@ -56,6 +56,7 @@ def flight(x, y):
 
 def main():
     navigate_wait(x=0, y=0, z=2, frame_id="body", auto_arm=True)
+    y = 0
     while y != 9:
         y = 0
         if not y % 2:
