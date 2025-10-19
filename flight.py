@@ -48,17 +48,20 @@ def flight(x, y):
     result = scan()
     if result:
         buildings.append((result, str(x), str(y)))
-    pub.publish(data=buildings)
+    #pub.publish(data=buildings)
+    print(buildings)
 
 def main():
     navigate_wait(x=0, y=0, z=2, frame_id="body", auto_arm=True)
     for y in range(10):
         if not y % 2:
-            for x in range(10):
+            for x in range(10, 0.5):
                 flight(x, y)
+                rospy.sleep(1)
         else:
-            for x in range(10, 0, -1):
+            for x in range(10, 0, -0.5):
                 flight(x, y)
+                rospy.sleep(1)
         
 
     navigate_wait(x=0, y=0, z=2, frame_id="aruco_map")
