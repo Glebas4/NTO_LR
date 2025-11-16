@@ -39,7 +39,6 @@ class building:
 
 
 def gen_points():
-    global points
     points = []
     while len(points) < 5:
         x = round(random.uniform(0, 9), 1)
